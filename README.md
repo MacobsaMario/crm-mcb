@@ -79,7 +79,7 @@ Use SIWC for account pages, user-specific dashboards, saved records, and write a
 - `npm run install:ci`: perform the one bounded lockfile install
 - `npm run dev`: start the Vite/Vinext development server
 - `npm run build`: build the deployable Sites artifact
-- `npm run start`: start the built Vinext application
+- `npm run start`: start the built Vinext application locally
 - `npm test`: build and verify the rendered development-preview metadata
 - `npm run db:generate`: generate Drizzle migrations after schema changes
 
@@ -97,7 +97,7 @@ Create a Heroku app, attach a Heroku Postgres plan, create a private Backblaze B
 - `B2_ENDPOINT`: optional; defaults to `https://s3.<B2_REGION>.backblazeb2.com`.
 - `CEO_PRESENTATION_PIN`, `CEO_PRESENTATION_SIGNING_SECRET`, and `MACOBSA_IMPORT_SECRET`: set these if the corresponding protected operations are needed.
 
-Heroku supplies `DATABASE_URL` when its Postgres add-on is attached. The `Procfile` applies PostgreSQL migrations in the release phase and starts the Next.js server on Heroku's assigned port. The production build adds the `crm_users` account table; only emails already authorized in `app/access-control.ts` can sign in.
+Heroku supplies `DATABASE_URL` when its Postgres add-on is attached. The `Procfile` applies PostgreSQL migrations in the release phase and starts the Next.js server on Heroku's assigned port. `npm start` also starts this Node server, so it works with Heroku's default Node buildpack process even when the `Procfile` is not used. The production build adds the `crm_users` account table; only emails already authorized in `app/access-control.ts` can sign in.
 
 Provision each user's password from an interactive terminal so it is not included in shell history or a deployment command:
 
